@@ -29,21 +29,16 @@ function showCart() {
   for (let index = 0; index < cart.items.length; index++) {
     let trElement = document.createElement("tr");
     tBodyElement.appendChild(trElement);
-    let tdElement1 = document.createElement("td");
-    trElement.appendChild(tdElement1);
-    let a = document.createElement("a");
-    let linkedText = document.createTextNode("X");
-    a.appendChild(linkedText);
-    a.href = "";
-    a.id = `${cart.items[index].product}`;
-    a.addEventListener("click", removeItemFromCart);
-    tdElement1.appendChild(a);
-    let tdElement2 = document.createElement("td");
-    trElement.appendChild(tdElement2);
-    tdElement2.textContent = cart.items[index].quantity;
-    let tdElement3 = document.createElement("td");
-    trElement.appendChild(tdElement3);
-    tdElement3.textContent = cart.items[index].product;
+    let a = document.createElement("td");
+    let quantity = document.createElement("td");
+    let items = document.createElement("td");
+    a.innerHTML = "X";
+    a.classList.add("remover");
+    quantity.textContent = cart.items[index].quantity;
+    items.textContent = cart.items[index].product;
+    trElement.appendChild(a);
+    trElement.appendChild(quantity);
+    trElement.appendChild(items);
   }
   // TODO: Find the table body
 
@@ -54,17 +49,14 @@ function showCart() {
 }
 
 function removeItemFromCart(event) {
-  event.preventDefault();
-  for (let index = 0; index < cart.items.length; index++) {
-    if (cart.items[index].product === event.target.id) {
-      cart.removeItem(index);
-    }
+  if (event.target.classList.contains("remover")) {
+    cart.removeItem(cart);
+    cart.saveToLocalStorage();
+    renderCart();
   }
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
   // TODO: Save the cart back to local storage
   // TODO: Re-draw the cart table
-  cart.saveToLocalStorage();
-  renderCart();
 }
 
 // This will initialize the page and draw the cart on screen

@@ -48,7 +48,7 @@ function updateCounter() {
   console.log(cart.items.length);
   let count = document.getElementById("itemCount");
 
-  count.textContent = counter;
+  count.textContent = `(${counter})`;
 }
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
