@@ -8,7 +8,6 @@ let cart;
 
 let tBodyElement = document.getElementsByTagName("TBODY")[0];
 
-
 function loadCart() {
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
   cart = new Cart(cartItems);
@@ -23,15 +22,12 @@ function renderCart() {
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {
-
   let tBodyElement = document.getElementsByTagName("TBODY")[0];
   tBodyElement.innerHTML = "";
-
 }
 
 // TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
-
   for (let index = 0; index < cart.items.length; index++) {
     let trElement = document.createElement("tr");
     tBodyElement.appendChild(trElement);
@@ -56,19 +52,10 @@ function showCart() {
 }
 
 function removeItemFromCart(event) {
-<<<<<<< HEAD
   if (event.target.classList.contains("remover")) {
     cart.removeItem(cart);
     cart.saveToLocalStorage();
     renderCart();
-=======
-  event.preventDefault();
-  for (let index = 0; index < cart.items.length; index++) {
-
-    if (cart.items[index].product === event.target.id) {
-      cart.removeItem(index);
-    }
->>>>>>> bce79f166a6ec7d9e2c8cabc73c712e59586b5d3
   }
 
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
