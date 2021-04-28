@@ -12,6 +12,9 @@ function populateForm() {
   //TODO: Add an <option> tag inside the form's select for each product
   const selectElement = document.getElementById('items');
   for (let i in Product.allProducts) {
+    let option =document.createElement('option');
+    selectElement.appendChild(option);
+    option.textContent=Product.allProducts[i].name;
 
   }
 
@@ -21,6 +24,7 @@ function populateForm() {
 // object, save the whole thing back to local storage and update the screen
 // so that it shows the # of items in the cart and a quick preview of the cart itself.
 function handleSubmit(event) {
+  event.preventDefault();
 
   // TODO: Prevent the page from reloading
 
@@ -37,13 +41,30 @@ function addSelectedItemToCart() {
   // TODO: suss out the item picked from the select list
   // TODO: get the quantity
   // TODO: using those, add one item to the Cart
+  const items=event.target.items.value;
+  const quantity=event.target.quantity.value;
+  cart.addItem(items,quantity);
+  console.log(cart);
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() {}
+function updateCounter() {
+let counter=cart.items.length;
+console.log(cart.items.length);
+let count=document.getElementById('itemCount');
 
+count.textContent=counter;
+}
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
+  const list=document.getElementById('cartContents');
+  list.innerHTML='';
+  for( let i = 0; i < cart.items.length; i++ ) {
+    let li = document.createElement( 'li' );
+    list.appendChild( li );
+
+    li.textContent = `${cart.items[i].product} was ordered a ${cart.items[i].quantity} number of times  `;
+  }
   // TODO: Get the item and quantity from the form
   // TODO: Add a new element to the cartContents div with that information
 }
