@@ -5,7 +5,10 @@
 const table = document.getElementById("cart");
 table.addEventListener("click", removeItemFromCart);
 let cart;
+
 let tBodyElement = document.getElementsByTagName("TBODY")[0];
+
+
 function loadCart() {
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
   cart = new Cart(cartItems);
@@ -20,12 +23,15 @@ function renderCart() {
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {
+
   let tBodyElement = document.getElementsByTagName("TBODY")[0];
   tBodyElement.innerHTML = "";
+
 }
 
 // TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
+
   for (let index = 0; index < cart.items.length; index++) {
     let trElement = document.createElement("tr");
     tBodyElement.appendChild(trElement);
@@ -45,6 +51,7 @@ function showCart() {
     trElement.appendChild(tdElement3);
     tdElement3.textContent = cart.items[index].product;
   }
+
   // TODO: Find the table body
 
   // TODO: Iterate over the items in the cart
@@ -56,10 +63,12 @@ function showCart() {
 function removeItemFromCart(event) {
   event.preventDefault();
   for (let index = 0; index < cart.items.length; index++) {
+
     if (cart.items[index].product === event.target.id) {
       cart.removeItem(index);
     }
   }
+
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
   // TODO: Save the cart back to local storage
   // TODO: Re-draw the cart table
