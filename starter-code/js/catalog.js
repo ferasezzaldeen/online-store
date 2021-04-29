@@ -11,11 +11,9 @@ function populateForm() {
   //TODO: Add an <option> tag inside the form's select for each product
   const selectElement = document.getElementById("items");
   for (let i in Product.allProducts) {
-
     let option = document.createElement("option");
     selectElement.appendChild(option);
     option.textContent = Product.allProducts[i].name;
-
   }
 }
 
@@ -49,26 +47,20 @@ function addSelectedItemToCart() {
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
-
   let counter = cart.items.length;
   console.log(cart.items.length);
   let count = document.getElementById("itemCount");
 
-  count.textContent = counter;
+  count.textContent = `(${counter})`;
 }
 
-
-count.textContent=counter;
-}
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
-
   const list = document.getElementById("cartContents");
   list.innerHTML = "";
   for (let i = 0; i < cart.items.length; i++) {
     let li = document.createElement("li");
     list.appendChild(li);
-
 
     li.textContent = `${cart.items[i].product} was ordered a ${cart.items[i].quantity} number of times  `;
   }
